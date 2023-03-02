@@ -44,9 +44,9 @@ public class CSVHelper {
                         Long.parseLong(csvRecord.get("advertiser_id")),
                         csvRecord.get("country"),
                         Double.parseDouble(csvRecord.get("price")),
-                        Long.parseLong(csvRecord.get("event_type_id")),
+                        Integer.parseInt(csvRecord.get("event_type_id")),
                         Integer.parseInt(csvRecord.get("gdpr")),
-                        Integer.parseInt(csvRecord.get("min_cpm")),
+                        Double.parseDouble(csvRecord.get("min_cpm")),
                         Double.parseDouble(csvRecord.get("priority")),
                         Double.parseDouble(csvRecord.get("bid_price"))
 

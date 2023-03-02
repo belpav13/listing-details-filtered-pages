@@ -23,9 +23,9 @@ public class DetailsCriteriaRepository {
     private final EntityManager entityManager;
     private final CriteriaBuilder criteriaBuilder;
 
-    public DetailsCriteriaRepository(EntityManager entityManager, CriteriaBuilder criteriaBuilder) {
+    public DetailsCriteriaRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.criteriaBuilder = criteriaBuilder;
+        this.criteriaBuilder = entityManager.getCriteriaBuilder();;
     }
 
     public Page<DetailsEntity> findAllWithFilters(DetailsPage detailsPage,
@@ -52,25 +52,25 @@ public class DetailsCriteriaRepository {
         List<Predicate> predicates = new ArrayList<>();
         if(Objects.nonNull(detailsSearchCriteria.getMinPrice())){
             predicates.add(
-                    criteriaBuilder.greaterThan(detailsRoot.get("price"),
+                    criteriaBuilder.greaterThanOrEqualTo(detailsRoot.get("price"),
                             + detailsSearchCriteria.getMinPrice() )
             );
         }
         if(Objects.nonNull(detailsSearchCriteria.getMaxPrice())){
             predicates.add(
-                    criteriaBuilder.lessThan(detailsRoot.get("price"),
+                    criteriaBuilder.lessThanOrEqualTo(detailsRoot.get("price"),
                             detailsSearchCriteria.getMaxPrice() )
             );
         }
         if(Objects.nonNull(detailsSearchCriteria.getMinMinCpm())){
             predicates.add(
-                    criteriaBuilder.greaterThan(detailsRoot.get("minCpm"),
+                    criteriaBuilder.greaterThanOrEqualTo(detailsRoot.get("minCpm"),
                              detailsSearchCriteria.getMinMinCpm())
             );
         }
         if(Objects.nonNull(detailsSearchCriteria.getMaxMinCpm())){
             predicates.add(
-                    criteriaBuilder.lessThan(detailsRoot.get("minCpm"),
+                    criteriaBuilder.lessThanOrEqualTo(detailsRoot.get("minCpm"),
                             + detailsSearchCriteria.getMaxMinCpm() )
             );
         }
