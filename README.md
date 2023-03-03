@@ -21,3 +21,11 @@
 ![img_2.png](img_2.png)
 .....
 ![img_3.png](img_3.png)
+
+
+5. Docker image
+   docker pull belpav/listing-details-filtered-pages:1.0.0
+
+    Run container on port 8081
+   docker run -d -p 8081:8080 belpav/listing-details-filtered-pages:1.0.0
+![img_4.png](img_4.png)
